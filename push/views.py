@@ -66,7 +66,6 @@ def push_urls(crawler_id, crawler_name, changed_line, url_link ):
 def crawl_data(request):
     with open('Osori-WebCrawler/settings.json') as json_data:
         data = json.load(json_data)                             #save the json_data in data
-
     for key, value in data.items():         #current, 170311, We only available in crawler 0, 1, 2 because of error in other crawler file
 
         file_name = value['file_name']
@@ -76,7 +75,7 @@ def crawl_data(request):
         url_index = value['url_index']
         criteria = int(value['criteria'])
 
-        output = (subprocess.check_output("python3 Osori-WebCrawler/" + file_name, shell=True)).decode("utf-8") #crawl the file
+        output = (subprocess.check_output("python Osori-WebCrawler/" + file_name, shell=True)).decode("utf-8") #crawl the file
         crawling_result_list = output.splitlines()                   #split its data by word-break
 
         title_list = []
@@ -128,7 +127,7 @@ def create_data(request):   #This function is made for create initial data.
         url_index = value['url_index']
         criteria = int(value['criteria'])
 
-        output = (subprocess.check_output("python3 Osori-WebCrawler/" + file_name, shell=True)).decode("utf-8") #crawl the file
+        output = (subprocess.check_output("python Osori-WebCrawler/" + file_name, shell=True)).decode("utf-8") #crawl the file
         crawling_result_list = output.splitlines()                   #split its data by enter
 
         title_list = []
